@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  template: '<nav-bar></nav-bar><events-list></events-list>'
+
 })
-export class AppComponent {
-  title = 'proyectoAngula9';
+export class AppComponent  {
+  title = 'ng-fundamentals';
 }
