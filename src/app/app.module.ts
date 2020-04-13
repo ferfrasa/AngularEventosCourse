@@ -1,18 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EventListComponent } from './events/events-list.component';
-import { EventThumbnailComponent } from './events/event-thumbnail.component';
+import{
+  EventListComponent,
+  EventThumbnailComponent,
+  EventService,
+  CreateEventComponent,
+  EventRouteActivator,
+  EventListResolver,
+  EventDetailsComponent
+} from './events/index'
+
 import { NavBarComponent} from './nav/navbar.component';
-import { EventService } from './shared/event.service';
-import { from } from 'rxjs';
 import { ShaService } from './shared/sha.service';
 import { ToastrService } from './common/toastr.service';
-import { EventDetailsComponent} from './events/event-details/event-details.component'
 import { appRoutes } from './routes';
 import { RouterModule } from '@angular/router';
-import { CreateEventComponent } from './events/create-event.component'
+import { Error404Component } from './errores/404.component'
 
 @NgModule({
   declarations: [
@@ -21,7 +25,8 @@ import { CreateEventComponent } from './events/create-event.component'
     EventThumbnailComponent,
     NavBarComponent,
     EventDetailsComponent,
-    CreateEventComponent
+    CreateEventComponent,
+    Error404Component
   ],
   imports: [
     BrowserModule,
@@ -29,8 +34,21 @@ import { CreateEventComponent } from './events/create-event.component'
     RouterModule.forRoot(appRoutes)
   ],
   providers: [EventService,
-              ShaService, ToastrService],
+              ShaService, ToastrService,
+              EventRouteActivator,
+              {
+                provide:'canDeactivateCreateEvent',
+                useValue: checkDirtyState
+              },
+              EventListResolver
+            ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function checkDirtyState(component:CreateEventComponent){
+  if(component.isDirty)
+    return window.confirm('You have not saves. Really want to cancel?')
+  return true;
+}
 
