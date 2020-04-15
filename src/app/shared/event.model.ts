@@ -2,6 +2,7 @@ export interface IEvent {
   id: number;
   name: string;
   date: Date;
+  time: string;
   price: number;
   imageUrl: string;
   location?: {
@@ -15,7 +16,7 @@ export interface IEvent {
 export interface ISession{
   id: number;
   name: string;
-  presenter: number;
+  presenter: string;
   duration: number;
   level: string;
   abstract: string;
