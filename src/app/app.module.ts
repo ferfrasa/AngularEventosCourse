@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule ,CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { AppComponent } from './app.component';
 import{
   EventListComponent,
@@ -9,7 +9,9 @@ import{
   EventRouteActivator,
   EventListResolver,
   EventDetailsComponent,
-  CreateSessionComponent
+  CreateSessionComponent,
+  SessionListComponent,
+  DurationPipe
 } from './events/index'
 
 import { NavBarComponent} from './nav/navbar.component';
@@ -20,6 +22,7 @@ import { RouterModule } from '@angular/router';
 import { Error404Component } from './errores/404.component'
 import { AuthService } from './user/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CollapsibleWellComponent } from './common/collapsible-well.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     EventDetailsComponent,
     CreateEventComponent,
     Error404Component,
-    CreateSessionComponent
+    CreateSessionComponent,
+    SessionListComponent,
+    CollapsibleWellComponent,
+    DurationPipe
   ],
   imports: [
     BrowserModule,
@@ -49,6 +55,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
               EventListResolver,
               AuthService
             ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
