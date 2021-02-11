@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { EventService } from '../../shared/event.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { IEvent, ISession } from 'src/app/shared';
 
 @Component({
@@ -24,9 +24,18 @@ export class EventDetailsComponent implements OnInit{
   }
 
 ngOnInit(){
-  this.event= this.eventService.getEvent(
-    +this.router.snapshot.params['id']
-  )
+
+  this.router.params.forEach((data)=>{
+
+    //this.eventService.getEvent( +this.router.snapshot.params['id']).subscribe((event:IEvent)=>{
+      this.event=data['event']
+      this.addMode= false;
+
+   // })//obtener parametro por url
+
+
+  })
+
 
 }
 
@@ -39,7 +48,7 @@ saveNewSession(session:ISession){
   ));
   session.id = nextID +1
   this.event.sessions.push(session)
-  this.eventService.updateEvent(this.event)
+  this.eventService.saveEvent(this.event)
   this.addMode = false
 
 }

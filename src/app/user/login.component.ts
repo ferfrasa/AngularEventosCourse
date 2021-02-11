@@ -13,6 +13,7 @@ import { Router} from '@angular/router'
     userName
     password
     mouseoverLogin
+    loginInvalid = false
     constructor(private authService:AuthService, private router:Router){
 
     }
@@ -21,7 +22,16 @@ import { Router} from '@angular/router'
       console.log(formValues)
 
       this.authService.loginUser(this.userName, this.password)
-      this.router.navigate(['events'])
+      .subscribe(res=>{
+        if(!res){
+          this.loginInvalid= true
+
+        }else{
+          this.router.navigate(['events'])
+        }
+
+      })
+
     }
     cancel(){
       this.router.navigate(['events'])

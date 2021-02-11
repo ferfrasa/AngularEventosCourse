@@ -23,15 +23,15 @@ import { IEvent } from '../shared';
   </div>
   <button class="btn btn-primary" (click)="handleClickMe()">Click me!</button>
 </div>`,
-styles:[`
-  .green { color: #00300 !important;}
-  .bold { font-weight: bold; }
-  .thumbnail { min-height: 210px}
-  .pad-left { margin-left: 10px; }
-  .well div { color: #bbb; }
-`
+  styles:[`
+    .green { color: #00300 !important;}
+    .bold { font-weight: bold; }
+    .thumbnail { min-height: 210px}
+    .pad-left { margin-left: 10px; }
+    .well div { color: #bbb; }
+  `
 
-]
+  ]
 
 })
 

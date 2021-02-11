@@ -9,7 +9,7 @@ export function restrictedWords(words){
     .filter(w=> w!= null)
 
 
-    return invalidWords && invalidWords.length >0
+    return invalidWords && invalidWords.length >0//DEVolver el objeto de palabras restringidas
      ? {'restrictedWords':invalidWords.join(',')}: null
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EventService } from './index';
+import { IEvent, ISession } from '../shared/event.model';
 @Component({
   templateUrl:'./create-event.component.html',
   styles: [
@@ -18,7 +19,23 @@ import { EventService } from './index';
 })
 
 export class CreateEventComponent implements OnInit {
-  event:any
+  event:IEvent={
+    date:new Date(),
+    id:0,
+    imageUrl:'',
+    name:'',
+    price:0,
+    time:'',
+    sessions: [],
+    onlineUrl:'',
+    location:{
+      address:'',
+      city:'',
+      country:''
+    }
+
+
+  }
   isDirty: boolean = true;
   constructor(private router: Router, private eventService: EventService) {
   }
@@ -28,14 +45,17 @@ export class CreateEventComponent implements OnInit {
    }
 
   cancel(){
-    this.router.navigate(['/events']);
+    this.router.navigate(['/events']);//navegar a la ruta
 
   }
   saveEvent(formValues){
     console.log(formValues)
-    this.eventService.saveEvent(formValues)
-    this.isDirty = false
-    this.router.navigate(['/events']);
+    this.eventService.saveEvent(formValues).subscribe(()=>{
+      this.isDirty = false
+      this.router.navigate(['/events']);
+
+    })
+
   }
 }
 
