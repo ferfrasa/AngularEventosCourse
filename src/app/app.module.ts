@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule ,CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import { NgModule , CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { AppComponent } from './app.component';
-import{
+import {
   EventListComponent,
   EventThumbnailComponent,
   EventService,
@@ -16,28 +16,28 @@ import{
   VoterService,
   LocationValidator,
   EventResolver
-} from './events/index'
+} from './events/index';
 
 import { NavBarComponent} from './nav/navbar.component';
 import { ShaService } from './shared/sha.service';
-//import { ToastrService } from './common/toastr.service';
-//import { TOASTR_TOKEN , Toastr} from './common/toastr.service';
-import { JQ_TOKEN, Toastr, TOASTR_TOKEN, CollapsibleWellComponent, SimpleModalComponent, ModalTriggerDirective} from './common/index'
+// import { ToastrService } from './common/toastr.service';
+// import { TOASTR_TOKEN , Toastr} from './common/toastr.service';
+import { JQ_TOKEN, Toastr, TOASTR_TOKEN, CollapsibleWellComponent, SimpleModalComponent, ModalTriggerDirective} from './common/index';
 
 import { appRoutes } from './routes';
 import { RouterModule } from '@angular/router';
-import { Error404Component } from './errores/404.component'
+import { Error404Component } from './errores/404.component';
 import { AuthService } from './user/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-//import { CollapsibleWellComponent } from './common/collapsible-well.component';
+// import { CollapsibleWellComponent } from './common/collapsible-well.component';
 import { HttpClientModule } from '@angular/common/http';
 
 
 
 
 
-let toastr: Toastr = window['toastr']
-let jQuery: Toastr = window['$']
+const toastr: Toastr = window.toastr;
+const jQuery: Toastr = window.$;
 
 @NgModule({
   declarations: [
@@ -61,7 +61,7 @@ let jQuery: Toastr = window['$']
   ],
   imports: [
     BrowserModule,
-    //AppRoutingModule
+    // AppRoutingModule
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
@@ -72,11 +72,11 @@ let jQuery: Toastr = window['$']
     ShaService,
     VoterService,
     EventResolver,
-    //ToastrService,
+    // ToastrService,
     { provide: TOASTR_TOKEN, useValue: toastr},
     { provide: JQ_TOKEN, useValue: jQuery},
     EventRouteActivator,
-    { provide:'canDeactivateCreateEvent', useValue: checkDirtyState },//enfoque a largo plazo
+    { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState }, // enfoque a largo plazo
     EventListResolver,
     AuthService
   ],
@@ -85,9 +85,10 @@ let jQuery: Toastr = window['$']
 })
 export class AppModule { }
 
-export function checkDirtyState(component:CreateEventComponent){
-  if(component.isDirty)//si el componenre esta sucio
-    return window.confirm('You have not saves. Really want to cancel?')
+export function checkDirtyState(component: CreateEventComponent) {
+  if (component.isDirty) {// si el componenre esta sucio
+    return window.confirm('You have not saves. Really want to cancel?');
+  }
   return true;
 }
 

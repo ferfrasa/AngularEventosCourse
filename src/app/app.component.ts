@@ -11,11 +11,11 @@ import { AuthService } from './user/auth.service';
 export class AppComponent  {
   title = 'ng-fundamentals';
 
-  constructor(private auth: AuthService){
+  constructor(private auth: AuthService) {
 
   }
 
-  ngOnInit(){
-    this.auth.checkAuthenticationStatus()
+  ngOnInit() {
+    this.auth.checkAuthenticationStatus();
   }
 }

@@ -17,20 +17,20 @@ import { EventService } from '../events/index';
 })
 
 export class NavBarComponent {
-  searchTerm: string ="";
+  searchTerm = '';
   foundSession: ISession[];
 
 
-  constructor(private authService:AuthService, private eventService: EventService) { }
+  constructor(private authService: AuthService, private eventService: EventService) { }
 
-  searchSessions(searchTerm){
+  searchSessions(searchTerm) {
 
     this.eventService.searchSessions(searchTerm).subscribe(
-      sessions=> {
+      sessions => {
         this.foundSession = sessions;
-        console.log(this.foundSession)
+        console.log(this.foundSession);
       }
-    )
+    );
 
   }
 

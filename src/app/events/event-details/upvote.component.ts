@@ -5,7 +5,7 @@ import { Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'upvote',
-  styleUrls:['./upvote.component.css'],
+  styleUrls: ['./upvote.component.css'],
   template: `
 
       <div class="votingWidgetContainer pointable" (click)="onClick()">
@@ -28,17 +28,17 @@ import { Component, EventEmitter, Input, Output} from '@angular/core';
 
 export class UpvoteComponent {
   @Input() count: number;
-  @Input() set voted(val){
-    this.iconColor= val ? 'red' :'white'
+  @Input() set voted(val) {
+    this.iconColor = val ? 'red' : 'white';
 
   }
-  @Output() vote = new EventEmitter()
+  @Output() vote = new EventEmitter();
 
   iconColor: string;
 
 
-  onClick(){
-    this.vote.emit({})
+  onClick() {
+    this.vote.emit({});
   }
 
 }

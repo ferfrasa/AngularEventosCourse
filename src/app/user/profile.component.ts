@@ -1,8 +1,8 @@
-import { Component, OnInit ,Inject} from '@angular/core'
-import { FormControl, FormGroup, Validators } from '@angular/forms'
-import { AuthService } from './auth.service'
+import { Component, OnInit , Inject} from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
-import { TOASTR_TOKEN,Toastr } from '../common/toastr.service'
+import { TOASTR_TOKEN, Toastr } from '../common/toastr.service';
 
 @Component({
   templateUrl: './profile.component.html',
@@ -18,56 +18,56 @@ import { TOASTR_TOKEN,Toastr } from '../common/toastr.service'
 
 })
 export class ProfileComponent implements OnInit {
-  profileForm: FormGroup
-  private firstName: FormControl
-  private lastName: FormControl
+  profileForm: FormGroup;
+  private firstName: FormControl;
+  private lastName: FormControl;
 
 
   constructor(private authService: AuthService,
-    private router: Router, @Inject(TOASTR_TOKEN) private toastr:Toastr){
+              private router: Router, @Inject(TOASTR_TOKEN) private toastr: Toastr) {
 
   }
 
-  ngOnInit(){
-    //un formroup se compone de varios controles de formulrio
+  ngOnInit() {
+    // un formroup se compone de varios controles de formulrio
     this.firstName = new FormControl(this.authService.currentUser.firstName,
       [Validators.required, Validators.pattern('[a-zA-Z].*')]);
     this.lastName = new FormControl(this.authService.currentUser.lastName, Validators.required);
-    this.profileForm= new FormGroup({
+    this.profileForm = new FormGroup({
       firstName: this.firstName,
       lastName: this.lastName
 
-    })
+    });
   }
-  cancel(){
-    this.router.navigate(['events'])
+  cancel() {
+    this.router.navigate(['events']);
   }
-  saveProfile(formValues){
+  saveProfile(formValues) {
 
-    if(this.profileForm.valid){
+    if (this.profileForm.valid) {
       this.authService.updateCurrentUser(formValues.firstName, formValues.lastNames)
-      .subscribe(()=>{
-        this.toastr.success('Profile Saves')
-      })
+      .subscribe(() => {
+        this.toastr.success('Profile Saves');
+      });
 
-      this.router.navigate(['events'])
+      this.router.navigate(['events']);
 
     }
 
   }
 
-  validateLastName(){
-    return this.lastName.valid || this.lastName.untouched
+  validateLastName() {
+    return this.lastName.valid || this.lastName.untouched;
   }
-  validateFirstName(){
-    return this.firstName.valid || this.firstName.untouched
+  validateFirstName() {
+    return this.firstName.valid || this.firstName.untouched;
   }
 
-  logout(){
-    this.authService.logout().subscribe(()=>{
-      this.router.navigate(['/user/login'])
+  logout() {
+    this.authService.logout().subscribe(() => {
+      this.router.navigate(['/user/login']);
 
-    })
+    });
 
 
 

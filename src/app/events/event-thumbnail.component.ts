@@ -1,4 +1,4 @@
-import { Component, Input, Output,EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { IEvent } from '../shared';
 
 @Component({
@@ -23,7 +23,7 @@ import { IEvent } from '../shared';
   </div>
   <button class="btn btn-primary" (click)="handleClickMe()">Click me!</button>
 </div>`,
-  styles:[`
+  styles: [`
     .green { color: #00300 !important;}
     .bold { font-weight: bold; }
     .thumbnail { min-height: 210px}
@@ -35,22 +35,22 @@ import { IEvent } from '../shared';
 
 })
 
-export class EventThumbnailComponent{
+export class EventThumbnailComponent {
 
   @Input() event: IEvent;
   @Output() eventClick = new EventEmitter();
-  someProperty: any ="  Some Property";
+  someProperty: any = '  Some Property';
 
-  handleClickMe(){
+  handleClickMe() {
     this.eventClick.emit(this.event.name);
   }
 
-  logFoo(){
-    console.log('foo')
+  logFoo() {
+    console.log('foo');
   }
-  getStartClass(){
-    const isEarlyStart = this.event && this.event.time === '8:00 am'
-    return {green:isEarlyStart ,bold: isEarlyStart}
+  getStartClass() {
+    const isEarlyStart = this.event && this.event.time === '8:00 am';
+    return {green: isEarlyStart , bold: isEarlyStart};
   }
 
 }

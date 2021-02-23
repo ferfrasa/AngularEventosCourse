@@ -1,10 +1,10 @@
 import { InjectionToken } from '@angular/core';
 
-declare let toastr:any;
+declare let toastr: any;
 
-export let TOASTR_TOKEN= new InjectionToken<Toastr>('toastr')
+export let TOASTR_TOKEN = new InjectionToken<Toastr>('toastr');
 
-export interface Toastr{
+export interface Toastr {
   success(message: string, title?: string): void;
   info(message: string, title?: string): void;
   warning(message: string, title?: string): void;

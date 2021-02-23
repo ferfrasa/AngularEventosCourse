@@ -9,18 +9,18 @@ export interface IEvent {
     address: string;
     city: string;
     country: string;
-  },
+  };
   onlineUrl?: string;
   sessions: ISession[];
 }
-export interface ISession{
+export interface ISession {
   id: number;
   name: string;
   presenter: string;
   duration: number;
   level: string;
   abstract: string;
-  voters: string[]
-  eventId?: string
+  voters: string[];
+  eventId?: string;
 
 }

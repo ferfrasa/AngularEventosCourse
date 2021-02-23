@@ -18,20 +18,20 @@ import { IEvent } from '../shared';
    </div>`
 })
 
-export class EventListComponent implements OnInit{
+export class EventListComponent implements OnInit {
   private events: IEvent[];
   constructor(private eventService: EventService,
-               
-              /*private toastr: ToastrService, */private router: ActivatedRoute){
+
+              /*private toastr: ToastrService, */private router: ActivatedRoute) {
 
   }
 
- ngOnInit(){
-   this.events = this.router.snapshot.data['events'];
+ ngOnInit() {
+   this.events = this.router.snapshot.data.events;
  }
 
-  handleEventClicked(data){
-    console.log('recived:', data)
+  handleEventClicked(data) {
+    console.log('recived:', data);
 
   }
 
